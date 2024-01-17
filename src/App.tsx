@@ -1,9 +1,10 @@
 import "./App.css";
+import BmiCalculator from "./components/BmiCalculator";
 
 function App() {
   return (
     <div>
-      <h1>BMI Calculator</h1>
+      <BmiCalculator />
     </div>
   );
 }
