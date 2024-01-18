@@ -17,8 +17,8 @@ const categoriesDeg: CategoriesDeg = {
 };
 
 const BmiCalculator = () => {
-  const [weight, setWeight] = useState<number>(0);
-  const [height, setHeight] = useState<number>(0);
+  const [weight, setWeight] = useState<number>(60);
+  const [height, setHeight] = useState<number>(165);
   const [bmi, setBmi] = useState<number | null>(null);
   const arrowRef = useRef<HTMLImageElement>(null);
 
@@ -37,15 +37,14 @@ const BmiCalculator = () => {
   };
 
   const getBmiCategory = (): string => {
+    const fixedBmi = parseFloat((bmi ?? 0).toPrecision(4));
     let category = "";
-    if (bmi === null) category = "";
-    else if (bmi < 18.5) category = "underweight";
-    else if (bmi >= 18.5 && bmi < 24.9) category = "normal";
-    else if (bmi >= 25 && bmi < 29.9) category = "overWeight";
-    else if (bmi >= 30 && bmi < 34.9) category = "obese";
+    if (fixedBmi === null) category = "";
+    else if (fixedBmi < 18.5) category = "underweight";
+    else if (fixedBmi >= 18.5 && fixedBmi <= 24.9) category = "normal";
+    else if (fixedBmi >= 25 && fixedBmi <= 29.9) category = "overWeight";
+    else if (fixedBmi >= 30 && fixedBmi <= 34.9) category = "obese";
     else category = "extraObese";
-    // arrowRef.current.style.transform = `rotate(${categoriesDeg[category].deg}deg)`;
-    // return categoriesDeg[category].name;
     if (arrowRef.current) {
       arrowRef.current.style.transform = `rotate(${categoriesDeg[category].deg}deg)`;
     }
